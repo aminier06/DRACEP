@@ -129,7 +129,7 @@
   <header class="header">
     <div class="container header-inner">
       <a class="brand" href="#inicio" aria-label="Inicio DRACEP">
-        <img class="brand-logo" src="logominerd.jpeg" alt="Logo institucional del Ministerio de Educación de la República Dominicana" />
+        <img class="brand-logo" src="logo.jpeg" alt="Logo institucional del Ministerio de Educación de la República Dominicana" />
         <div class="brand-text">
           <small>MINERD</small>
           <strong>Dirección de Reconocimiento y Acreditación de Centros Educativos Privados</strong>
@@ -364,7 +364,7 @@
     <div class="container">
       <div class="footer-grid">
         <div>
-          <div style="display:flex;align-items:center;gap:.8rem;margin-bottom:.75rem"><img src="logominerd.jpeg" alt="Logo institucional del Ministerio de Educación de la República Dominicana" style="width:58px;height:58px;border-radius:6px;object-fit:contain;background:#003f7d"><h4 style="margin:0">DRACEP · MINERD</h4></div>
+          <div style="display:flex;align-items:center;gap:.8rem;margin-bottom:.75rem"><img src="logo.jpeg" alt="Logo institucional del Ministerio de Educación de la República Dominicana" style="width:58px;height:58px;border-radius:6px;object-fit:contain;background:#003f7d"><h4 style="margin:0">DRACEP · MINERD</h4></div>
           <p>Portal de servicios, información institucional y consulta pública de centros educativos privados.</p>
         </div>
         <div><h4>Sobre nosotros</h4><ul><li>Quiénes somos</li><li>Historia</li><li>Organigrama</li><li>Marco legal</li></ul></div>
@@ -447,10 +447,28 @@
       });
     }
 
+    function hayFiltrosActivos() {
+      return Boolean(
+        searchName.value.trim() ||
+        searchRegion.value ||
+        searchDistrict.value ||
+        searchStatus.value
+      );
+    }
+
+    function mostrarEstadoInicial() {
+      schoolTable.innerHTML = '<tr><td colspan="6">Aplique un filtro para consultar los centros privados: seleccione una regional, un distrito, un estado o escriba el código o nombre del centro.</td></tr>';
+      schoolCount.textContent = `Catálogo privado disponible: ${centrosPrivados.length.toLocaleString('es-DO')} centros. No se muestran resultados hasta aplicar un filtro.`;
+    }
+
     function renderCentros() {
+      if (!hayFiltrosActivos()) {
+        mostrarEstadoInicial();
+        return;
+      }
+
       const resultados = filtrarCentros();
-      const limite = 150;
-      const filas = resultados.slice(0, limite).map(c => `
+      const filas = resultados.map(c => `
         <tr>
           <td>${escapeHtml(c.codigo)}</td>
           <td>${escapeHtml(c.centro)}</td>
@@ -460,12 +478,16 @@
           <td>${Number(c.matricula || 0).toLocaleString('es-DO')}</td>
         </tr>`).join('');
       schoolTable.innerHTML = filas || '<tr><td colspan="6">No se encontraron centros con los filtros seleccionados.</td></tr>';
-      const mostrado = Math.min(resultados.length, limite);
-      schoolCount.textContent = `Mostrando ${mostrado.toLocaleString('es-DO')} de ${resultados.length.toLocaleString('es-DO')} centros encontrados. Catálogo privado: ${centrosPrivados.length.toLocaleString('es-DO')} centros.`;
+      schoolCount.textContent = `Mostrando ${resultados.length.toLocaleString('es-DO')} centro(s) encontrado(s). Catálogo privado: ${centrosPrivados.length.toLocaleString('es-DO')} centros.`;
     }
 
     searchRegion.addEventListener('change', () => { actualizarDistritos(); renderCentros(); });
-    [searchName, searchDistrict, searchStatus].forEach(el => el.addEventListener('input', renderCentros));
+    searchDistrict.addEventListener('change', renderCentros);
+    searchStatus.addEventListener('change', renderCentros);
+    searchName.addEventListener('input', renderCentros);
+    searchName.addEventListener('keydown', event => {
+      if (event.key === 'Enter') renderCentros();
+    });
     btnSearch.addEventListener('click', renderCentros);
     btnClear.addEventListener('click', () => {
       searchName.value = '';
@@ -473,11 +495,11 @@
       searchStatus.value = '';
       actualizarDistritos();
       searchDistrict.value = '';
-      renderCentros();
+      mostrarEstadoInicial();
     });
 
     llenarFiltros();
-    renderCentros();
+    mostrarEstadoInicial();
   </script>
 </body>
 </html>
