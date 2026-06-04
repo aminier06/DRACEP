@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Portal institucional de la Dirección de Reconocimiento y Acreditación de Centros Educativos Privados (DRACEP) del Ministerio de Educación de la República Dominicana." />
+  <title>DRACEP | Ministerio de Educación de la República Dominicana</title>
+  <style>
+    :root{
+      --azul:#003f7d;
+      --azul-2:#005baa;
+      --azul-3:#eaf3fb;
+      --rojo:#c91f32;
+      --rojo-2:#e63946;
+      --gris:#f4f6f8;
+      --gris-2:#e3e8ef;
+      --texto:#1f2d3d;
+      --texto-2:#5b6b7a;
+      --blanco:#ffffff;
+      --sombra:0 10px 25px rgba(0,0,0,.08);
+      --radio:16px;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{font-family:Arial, Helvetica, sans-serif;background:#fff;color:var(--texto);line-height:1.55}
+    a{text-decoration:none;color:inherit}
+    img{max-width:100%;display:block}
+    .container{width:min(1180px,92%);margin:0 auto}
+    .topbar{background:var(--azul);color:#fff;font-size:.92rem}
+    .topbar .container{display:flex;justify-content:space-between;align-items:center;gap:1rem;padding:.55rem 0}
+    .topbar a{color:#fff;opacity:.95}
+    .header{background:#fff;border-bottom:1px solid var(--gris-2);position:sticky;top:0;z-index:20;box-shadow:0 2px 10px rgba(0,0,0,.04)}
+    .header-inner{display:flex;align-items:center;justify-content:space-between;gap:1.25rem;padding:1rem 0}
+    .brand{display:flex;align-items:center;gap:.9rem}
+    .brand-logo{width:70px;height:70px;border-radius:8px;object-fit:contain;background:#003f7d;box-shadow:var(--sombra);flex:none}
+    .brand-mark{width:56px;height:56px;border-radius:50%;background:linear-gradient(135deg,var(--azul),var(--rojo));display:grid;place-items:center;color:#fff;font-weight:800;font-size:1.05rem;box-shadow:var(--sombra)}
+    .brand-text small{display:block;color:var(--texto-2);font-size:.78rem;text-transform:uppercase;letter-spacing:.04em}
+    .brand-text strong{display:block;color:var(--azul);font-size:1.05rem;line-height:1.2}
+    nav ul{display:flex;list-style:none;gap:.4rem;align-items:center;flex-wrap:wrap;justify-content:flex-end}
+    nav a{display:block;padding:.65rem .82rem;border-radius:999px;color:var(--azul);font-weight:700;font-size:.92rem}
+    nav a:hover,nav a.active{background:var(--azul-3);color:var(--azul)}
+    .hero{background:linear-gradient(120deg,rgba(0,63,125,.96),rgba(0,91,170,.88)),url('') center/cover no-repeat;color:#fff;padding:4.3rem 0 3.4rem;position:relative;overflow:hidden}
+    .hero:after{content:"";position:absolute;right:-120px;bottom:-170px;width:430px;height:430px;border-radius:50%;background:rgba(255,255,255,.08)}
+    .hero-grid{position:relative;z-index:1;display:grid;grid-template-columns:1.2fr .8fr;gap:2.2rem;align-items:center}
+    .tag{display:inline-flex;align-items:center;gap:.5rem;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.28);padding:.45rem .8rem;border-radius:999px;margin-bottom:1rem;font-weight:700;font-size:.92rem}
+    h1{font-size:clamp(2rem,4vw,3.6rem);line-height:1.05;margin-bottom:1rem}
+    .hero p{font-size:1.12rem;max-width:760px;opacity:.96;margin-bottom:1.35rem}
+    .hero-actions{display:flex;gap:.8rem;flex-wrap:wrap}
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;padding:.85rem 1.05rem;border-radius:10px;font-weight:800;border:1px solid transparent;cursor:pointer;transition:.2s ease;background:var(--azul-2);color:#fff}
+    .btn:hover{transform:translateY(-1px);box-shadow:var(--sombra)}
+    .btn.primary{background:var(--rojo);color:#fff}
+    .btn.light{background:#fff;color:var(--azul)}
+    .btn.outline{background:transparent;color:#fff;border-color:rgba(255,255,255,.55)}
+    .hero-card{background:#fff;color:var(--texto);border-radius:var(--radio);box-shadow:var(--sombra);padding:1.35rem}
+    .hero-card h3{color:var(--azul);margin-bottom:.85rem}
+    .quick-list{display:grid;gap:.65rem}
+    .quick-item{display:flex;justify-content:space-between;gap:1rem;padding:.75rem;border:1px solid var(--gris-2);border-radius:12px;background:#fff}
+    .quick-item span{font-weight:700;color:var(--texto)}
+    .quick-item small{color:var(--texto-2)}
+    section{padding:3.2rem 0}
+    .section-title{display:flex;justify-content:space-between;gap:1.2rem;align-items:end;margin-bottom:1.5rem}
+    .section-title h2{color:var(--azul);font-size:2rem;line-height:1.1}
+    .section-title p{color:var(--texto-2);max-width:650px}
+    .cards{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem}
+    .card{background:#fff;border:1px solid var(--gris-2);border-radius:var(--radio);padding:1.15rem;box-shadow:0 6px 16px rgba(0,0,0,.04)}
+    .card:hover{box-shadow:var(--sombra);transform:translateY(-2px);transition:.2s ease}
+    .icon{width:42px;height:42px;border-radius:12px;background:var(--azul-3);color:var(--azul);display:grid;place-items:center;font-size:1.35rem;margin-bottom:.8rem}
+    .card h3{font-size:1.05rem;color:var(--azul);margin-bottom:.45rem}
+    .card p{color:var(--texto-2);font-size:.95rem}
+    .kpi-wrap{background:var(--gris);border-top:1px solid var(--gris-2);border-bottom:1px solid var(--gris-2)}
+    .kpis{display:grid;grid-template-columns:repeat(5,1fr);gap:1rem}
+    .kpi{background:#fff;border-radius:var(--radio);padding:1rem;border:1px solid var(--gris-2)}
+    .kpi strong{display:block;color:var(--azul);font-size:1.8rem;line-height:1}
+    .kpi span{display:block;color:var(--texto-2);font-weight:700;margin-top:.45rem;font-size:.88rem}
+    .layout-2{display:grid;grid-template-columns:.9fr 1.1fr;gap:1.3rem;align-items:start}
+    .panel{background:#fff;border:1px solid var(--gris-2);border-radius:var(--radio);padding:1.25rem;box-shadow:0 6px 16px rgba(0,0,0,.04)}
+    .panel h3{color:var(--azul);margin-bottom:.8rem}
+    .service-list{display:grid;gap:.65rem;margin-top:.8rem}
+    .service-row{display:grid;grid-template-columns:1fr auto;gap:1rem;align-items:center;padding:.85rem;border:1px solid var(--gris-2);border-radius:12px;background:#fff}
+    .badge{display:inline-flex;padding:.25rem .55rem;border-radius:999px;font-size:.76rem;font-weight:800;background:var(--azul-3);color:var(--azul);white-space:nowrap}
+    .badge.red{background:#fdebed;color:var(--rojo)}
+    .search-box{display:grid;grid-template-columns:1fr 1fr 1fr auto;gap:.7rem;margin-bottom:1rem}
+    input,select{width:100%;padding:.82rem;border:1px solid var(--gris-2);border-radius:10px;font:inherit;background:#fff;color:var(--texto)}
+    table{width:100%;border-collapse:collapse;overflow:hidden;border-radius:12px;background:#fff}
+    th,td{padding:.78rem;border-bottom:1px solid var(--gris-2);text-align:left;font-size:.92rem}
+    th{background:var(--azul);color:#fff;font-weight:800}
+    tr:last-child td{border-bottom:none}
+    .status{font-weight:800;border-radius:999px;padding:.25rem .55rem;display:inline-block;font-size:.78rem}
+    .aperturado{background:#fff4d8;color:#8a5a00}.reconocido{background:#e8f3ff;color:#005baa}.acreditado{background:#e8f7ed;color:#157347}
+    .map-placeholder{min-height:280px;border-radius:var(--radio);background:linear-gradient(135deg,#dcecf8,#f7fbff);border:1px dashed #8ab2d4;display:grid;place-items:center;text-align:center;color:var(--azul);font-weight:800;padding:1rem}
+    .docs{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
+    .doc{display:flex;gap:.8rem;align-items:flex-start;background:#fff;border:1px solid var(--gris-2);border-radius:14px;padding:1rem}
+    .doc .pdf{background:#fdebed;color:var(--rojo);width:38px;height:38px;border-radius:10px;display:grid;place-items:center;font-weight:900;flex:none}
+    .doc h4{color:var(--azul);font-size:.98rem;margin-bottom:.25rem}
+    .doc p{color:var(--texto-2);font-size:.88rem}
+    .news-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:1rem}
+    .news-main,.news-side{background:#fff;border:1px solid var(--gris-2);border-radius:var(--radio);padding:1.25rem}
+    .news-main{min-height:230px;background:linear-gradient(135deg,rgba(0,63,125,.92),rgba(0,91,170,.72));color:#fff;display:flex;flex-direction:column;justify-content:end}
+    .news-main h3{font-size:1.5rem;margin-bottom:.4rem}
+    .news-side ul{list-style:none;display:grid;gap:.7rem}
+    .news-side li{padding-bottom:.7rem;border-bottom:1px solid var(--gris-2)}
+    .news-side li:last-child{border-bottom:0;padding-bottom:0}
+    .contact{background:linear-gradient(120deg,var(--azul),#06335f);color:#fff}
+    .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.3rem}
+    .contact .panel{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.2);color:#fff}
+    .contact .panel h3{color:#fff}
+    .contact input,.contact select{border:0}
+    textarea{width:100%;min-height:120px;border:0;border-radius:10px;padding:.82rem;font:inherit;resize:vertical}
+    footer{background:#101c2b;color:#dbe6f2;padding:2.2rem 0 1rem}
+    .footer-grid{display:grid;grid-template-columns:1.2fr repeat(3,1fr);gap:1.2rem;margin-bottom:1.5rem}
+    footer h4{color:#fff;margin-bottom:.7rem}
+    footer ul{list-style:none;display:grid;gap:.35rem;color:#b9c7d6;font-size:.92rem}
+    .copyright{border-top:1px solid rgba(255,255,255,.12);padding-top:1rem;color:#b9c7d6;font-size:.9rem;text-align:center}
+    .mobile-toggle{display:none;border:0;background:var(--azul);color:#fff;border-radius:10px;padding:.7rem .9rem;font-weight:800}
+    @media(max-width:980px){.hero-grid,.layout-2,.news-grid,.contact-grid{grid-template-columns:1fr}.cards{grid-template-columns:repeat(2,1fr)}.kpis{grid-template-columns:repeat(2,1fr)}.docs{grid-template-columns:1fr 1fr}.search-box{grid-template-columns:1fr 1fr}.footer-grid{grid-template-columns:1fr 1fr}.mobile-toggle{display:block}nav{display:none;width:100%}nav.open{display:block}.header-inner{flex-wrap:wrap}nav ul{justify-content:flex-start}}
+    @media(max-width:640px){.topbar .container{flex-direction:column;align-items:flex-start}.cards,.docs,.kpis,.search-box,.footer-grid{grid-template-columns:1fr}.hero{padding:3rem 0}.section-title{display:block}.section-title h2{margin-bottom:.6rem}table{display:block;overflow-x:auto;white-space:nowrap}}
+  </style>
+</head>
+<body>
+  <div class="topbar">
+    <div class="container">
+      <span>República Dominicana · Ministerio de Educación</span>
+      <span><a href="#contacto">Contacto</a> · <a href="#servicios">Servicios</a> · <a href="#colegios">Buscador de colegios</a></span>
+    </div>
+  </div>
+
+  <header class="header">
+    <div class="container header-inner">
+      <a class="brand" href="#inicio" aria-label="Inicio DRACEP">
+        <img class="brand-logo" src="logo.jpeg" alt="Logo institucional del Ministerio de Educación de la República Dominicana" />
+        <div class="brand-text">
+          <small>MINERD</small>
+          <strong>Dirección de Reconocimiento y Acreditación de Centros Educativos Privados</strong>
+        </div>
+      </a>
+      <button class="mobile-toggle" id="toggleMenu">Menú</button>
+      <nav id="mainNav" aria-label="Menú principal">
+        <ul>
+          <li><a class="active" href="#inicio">Inicio</a></li>
+          <li><a href="#nosotros">Sobre nosotros</a></li>
+          <li><a href="#servicios">Servicios</a></li>
+          <li><a href="#colegios">Colegios</a></li>
+          <li><a href="#normativas">Normativas</a></li>
+          <li><a href="#dracep-cerca">DRACEP de cerca</a></li>
+          <li><a href="#contacto">Contacto</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="inicio">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <span class="tag">Portal institucional y de servicios</span>
+          <h1>Reconocimiento, acreditación y orientación para centros educativos privados</h1>
+          <p>Un espacio digital para consultar requisitos, iniciar solicitudes, verificar el estatus de colegios privados y dar seguimiento transparente a los servicios de la DRACEP.</p>
+          <div class="hero-actions">
+            <a class="btn primary" href="#servicios">Iniciar un servicio</a>
+            <a class="btn light" href="#colegios">Buscar colegio</a>
+            <a class="btn outline" href="#normativas">Ver normativas</a>
+          </div>
+        </div>
+        <aside class="hero-card" aria-label="Servicios frecuentes">
+          <h3>Servicios más consultados</h3>
+          <div class="quick-list">
+            <a class="quick-item" href="#servicios"><span>Apertura de centro privado</span><small>Requisitos</small></a>
+            <a class="quick-item" href="#servicios"><span>Acreditación</span><small>Procedimiento</small></a>
+            <a class="quick-item" href="#servicios"><span>Certificación</span><small>Solicitud</small></a>
+            <a class="quick-item" href="#servicios"><span>Cambio de nombre/director</span><small>Gestión</small></a>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="kpi-wrap" aria-labelledby="kpi-title">
+      <div class="container">
+        <div class="section-title">
+          <div>
+            <h2 id="kpi-title">Tablero de eficiencia de servicios</h2>
+            <p>Indicadores referenciales para monitorear la gestión institucional. Los datos reales deben conectarse posteriormente a la plataforma DRACEP Digital.</p>
+          </div>
+        </div>
+        <div class="kpis">
+          <div class="kpi"><strong>248</strong><span>Visitas y acompañamientos</span></div>
+          <div class="kpi"><strong>64</strong><span>Solicitudes de apertura</span></div>
+          <div class="kpi"><strong>31</strong><span>Procesos de acreditación</span></div>
+          <div class="kpi"><strong>412</strong><span>Certificaciones emitidas</span></div>
+          <div class="kpi"><strong>92%</strong><span>Respuestas OAI en plazo</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="nosotros">
+      <div class="container layout-2">
+        <div>
+          <div class="section-title">
+            <div>
+              <h2>Sobre nosotros</h2>
+              <p>La DRACEP organiza los procesos de reconocimiento, acreditación, certificación y seguimiento de los centros educativos privados, en coherencia con las normativas vigentes del sistema educativo dominicano.</p>
+            </div>
+          </div>
+          <div class="cards" style="grid-template-columns:repeat(2,1fr)">
+            <article class="card"><div class="icon">◈</div><h3>Misión</h3><p>Orientar y regular los procesos de reconocimiento y acreditación de centros educativos privados mediante servicios oportunos, transparentes y técnicamente sustentados.</p></article>
+            <article class="card"><div class="icon">◎</div><h3>Visión</h3><p>Ser una dirección referente en gestión digital, calidad de servicio y trazabilidad de los procesos vinculados a centros educativos privados.</p></article>
+            <article class="card"><div class="icon">✓</div><h3>Valores</h3><p>Transparencia, responsabilidad, equidad, eficiencia, ética pública y orientación al usuario.</p></article>
+            <article class="card"><div class="icon">▦</div><h3>Dependencias</h3><p>Despacho de la Dirección, unidades técnicas, atención al usuario, gestión documental y seguimiento territorial.</p></article>
+          </div>
+        </div>
+        <aside class="panel">
+          <h3>Menú institucional</h3>
+          <div class="service-list">
+            <a class="service-row" href="#"><span>Quiénes somos</span><span class="badge">Institucional</span></a>
+            <a class="service-row" href="#"><span>Historia</span><span class="badge">Reseña</span></a>
+            <a class="service-row" href="#"><span>Organigrama</span><span class="badge">Estructura</span></a>
+            <a class="service-row" href="#"><span>Despacho de la Dirección</span><span class="badge">Gestión</span></a>
+            <a class="service-row" href="#normativas"><span>Marco legal</span><span class="badge red">Normativas</span></a>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section id="servicios" style="background:var(--gris)">
+      <div class="container">
+        <div class="section-title">
+          <div>
+            <h2>Servicios DRACEP</h2>
+            <p>Cada servicio debe publicar descripción, procedimiento, requisitos, documentos descargables, formulario de solicitud y mecanismo de seguimiento.</p>
+          </div>
+          <a class="btn" href="#contacto">Solicitar orientación</a>
+        </div>
+        <div class="cards">
+          <article class="card"><div class="icon">🏫</div><h3>Reconocimiento / apertura</h3><p>Solicitud inicial, ficha de apertura, asignación de código y carga de documentos institucionales.</p></article>
+          <article class="card"><div class="icon">★</div><h3>Acreditación</h3><p>Proceso técnico para validar condiciones de funcionamiento y cumplimiento normativo del centro.</p></article>
+          <article class="card"><div class="icon">📄</div><h3>Certificación</h3><p>Emisión de certificaciones sobre estatus, autorización o condición institucional del centro privado.</p></article>
+          <article class="card"><div class="icon">↻</div><h3>Gestión de cambios</h3><p>Cambios de nombre, director, ubicación u otros datos oficiales del centro educativo privado.</p></article>
+          <article class="card"><div class="icon">☏</div><h3>Atención al usuario</h3><p>Orientación, consultas, quejas, solicitudes de información y canalización de respuestas OAI.</p></article>
+          <article class="card"><div class="icon">🗂</div><h3>Repositorio de expedientes</h3><p>Consulta segura de documentación cargada y estado de revisión por unidad responsable.</p></article>
+          <article class="card"><div class="icon">📊</div><h3>Seguimiento de trámites</h3><p>Panel para conocer etapa, observaciones, fecha de entrada y tiempo de respuesta estimado.</p></article>
+          <article class="card"><div class="icon">🔎</div><h3>Validación pública</h3><p>Consulta del estatus oficial de colegios privados registrados en la base institucional.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="colegios">
+      <div class="container">
+        <div class="section-title">
+          <div>
+            <h2>Buscador de colegios privados</h2>
+            <p>Consulta pública por código, nombre, regional, distrito y estatus legal. Esta maqueta usa datos de ejemplo.</p>
+          </div>
+        </div>
+        <div class="layout-2">
+          <div class="panel">
+            <h3>Consulta rápida</h3>
+            <div class="search-box">
+              <input id="searchName" type="search" placeholder="Código o nombre" />
+              <select id="searchRegion"><option value="">Regional</option><option>09 Mao</option><option>10 Santo Domingo</option><option>15 Santo Domingo</option></select>
+              <select id="searchStatus"><option value="">Estatus</option><option>Aperturado</option><option>Reconocido</option><option>Acreditado</option></select>
+              <button class="btn" id="btnSearch" type="button">Buscar</button>
+            </div>
+            <table aria-label="Resultados de colegios">
+              <thead><tr><th>Código</th><th>Centro</th><th>Distrito</th><th>Estatus</th></tr></thead>
+              <tbody id="schoolTable">
+                <tr data-region="09 Mao" data-status="Acreditado"><td>09011234</td><td>Colegio Modelo del Norte</td><td>09-01 Mao</td><td><span class="status acreditado">Acreditado</span></td></tr>
+                <tr data-region="10 Santo Domingo" data-status="Reconocido"><td>10024567</td><td>Instituto Educativo Horizonte</td><td>10-02 SD Este</td><td><span class="status reconocido">Reconocido</span></td></tr>
+                <tr data-region="15 Santo Domingo" data-status="Aperturado"><td>15037890</td><td>Centro Educativo Nuevo Futuro</td><td>15-03 SD Centro</td><td><span class="status aperturado">Aperturado</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="map-placeholder">
+            <div>
+              <div style="font-size:2.6rem">🗺️</div>
+              <p>Mapa general de centros privados</p>
+              <small>Colores sugeridos: aperturado, reconocido y acreditado.</small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="normativas" style="background:var(--gris)">
+      <div class="container">
+        <div class="section-title">
+          <div>
+            <h2>Marco legal y normativas</h2>
+            <p>Repositorio filtrable de leyes, ordenanzas, órdenes departamentales, código de ética, PEI, manuales, guías y documentos técnicos.</p>
+          </div>
+        </div>
+        <div class="docs">
+          <article class="doc"><div class="pdf">PDF</div><div><h4>Leyes generales</h4><p>Normativa marco del sistema educativo dominicano.</p></div></article>
+          <article class="doc"><div class="pdf">PDF</div><div><h4>Ordenanzas y órdenes departamentales</h4><p>Disposiciones aplicables a centros educativos privados.</p></div></article>
+          <article class="doc"><div class="pdf">PDF</div><div><h4>Código de ética de centros educativos</h4><p>Orientaciones éticas para la gestión institucional.</p></div></article>
+          <article class="doc"><div class="pdf">PDF</div><div><h4>Plan Estratégico Institucional</h4><p>Lineamientos estratégicos y metas institucionales.</p></div></article>
+          <article class="doc"><div class="pdf">PDF</div><div><h4>Manuales y guías</h4><p>Material técnico para procesos de apertura, reconocimiento y acreditación.</p></div></article>
+          <article class="doc"><div class="pdf">PDF</div><div><h4>Preguntas frecuentes</h4><p>Respuestas a consultas recurrentes de usuarios y centros privados.</p></div></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="dracep-cerca">
+      <div class="container">
+        <div class="section-title">
+          <div>
+            <h2>DRACEP de cerca</h2>
+            <p>Espacio de comunicación institucional para noticias, galería, videos, podcast, cronogramas, EVA DRACEP y recursos virtuales.</p>
+          </div>
+        </div>
+        <div class="news-grid">
+          <article class="news-main">
+            <span class="tag">DRACEP News</span>
+            <h3>Novedades, orientaciones y avisos oficiales</h3>
+            <p>Publicaciones periódicas para centros educativos privados, familias y ciudadanía.</p>
+          </article>
+          <aside class="news-side">
+            <h3 style="color:var(--azul);margin-bottom:.8rem">Recursos destacados</h3>
+            <ul>
+              <li><strong>EVA DRACEP</strong><br><small>Entorno virtual de aprendizaje y orientación.</small></li>
+              <li><strong>Cronogramas</strong><br><small>Fechas importantes de procesos y convocatorias.</small></li>
+              <li><strong>DRACEP Cloud</strong><br><small>Repositorio institucional de recursos.</small></li>
+              <li><strong>DRACEP Podcast</strong><br><small>Cápsulas informativas para usuarios.</small></li>
+            </ul>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section id="contacto" class="contact">
+      <div class="container contact-grid">
+        <div>
+          <div class="section-title">
+            <div>
+              <h2 style="color:#fff">Contacto y atención al usuario</h2>
+              <p style="color:#dce9f7">Canales de orientación para solicitudes, seguimiento de trámites, información pública y soporte a centros educativos privados.</p>
+            </div>
+          </div>
+          <div class="panel">
+            <h3>Información institucional</h3>
+            <p><strong>Dirección:</strong> Sede Central del MINERD, Santo Domingo, República Dominicana.</p>
+            <p><strong>Correo:</strong> dracep@minerd.gob.do</p>
+            <p><strong>Teléfono:</strong> (809) 688-9700</p>
+            <p><strong>Accesos:</strong> DRACEP Digital · Correo institucional · OAI</p>
+          </div>
+        </div>
+        <form class="panel" onsubmit="event.preventDefault(); alert('Formulario de demostración. En producción debe conectarse a DRACEP Digital o al gestor institucional correspondiente.');">
+          <h3>Formulario de orientación</h3>
+          <div style="display:grid;gap:.7rem">
+            <input required placeholder="Nombre completo" />
+            <input required type="email" placeholder="Correo electrónico" />
+            <select required><option value="">Tipo de solicitud</option><option>Apertura</option><option>Acreditación</option><option>Certificación</option><option>Cambio de datos</option><option>OAI</option></select>
+            <textarea required placeholder="Describa brevemente su solicitud"></textarea>
+            <button class="btn primary" type="submit">Enviar solicitud</button>
+          </div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div style="display:flex;align-items:center;gap:.8rem;margin-bottom:.75rem"><img src="logo.jpeg" alt="Logo institucional del Ministerio de Educación de la República Dominicana" style="width:58px;height:58px;border-radius:6px;object-fit:contain;background:#003f7d"><h4 style="margin:0">DRACEP · MINERD</h4></div>
+          <p>Portal de servicios, información institucional y consulta pública de centros educativos privados.</p>
+        </div>
+        <div><h4>Sobre nosotros</h4><ul><li>Quiénes somos</li><li>Historia</li><li>Organigrama</li><li>Marco legal</li></ul></div>
+        <div><h4>Servicios</h4><ul><li>Apertura</li><li>Acreditación</li><li>Certificación</li><li>Gestión de cambios</li></ul></div>
+        <div><h4>Enlaces</h4><ul><li>Transparencia</li><li>OAI</li><li>Correo institucional</li><li>Redes MINERD</li></ul></div>
+      </div>
+      <div class="copyright">© 2026 Ministerio de Educación de la República Dominicana · Propuesta conceptual de portal DRACEP.</div>
+    </div>
+  </footer>
+
+  <script>
+    const toggle = document.getElementById('toggleMenu');
+    const nav = document.getElementById('mainNav');
+    toggle.addEventListener('click', () => nav.classList.toggle('open'));
+
+    document.querySelectorAll('nav a').forEach(a => {
+      a.addEventListener('click', () => nav.classList.remove('open'));
+    });
+
+    const btnSearch = document.getElementById('btnSearch');
+    btnSearch.addEventListener('click', () => {
+      const q = document.getElementById('searchName').value.toLowerCase().trim();
+      const region = document.getElementById('searchRegion').value;
+      const status = document.getElementById('searchStatus').value;
+      document.querySelectorAll('#schoolTable tr').forEach(row => {
+        const text = row.innerText.toLowerCase();
+        const okQ = !q || text.includes(q);
+        const okRegion = !region || row.dataset.region === region;
+        const okStatus = !status || row.dataset.status === status;
+        row.style.display = (okQ && okRegion && okStatus) ? '' : 'none';
+      });
+    });
+  </script>
+</body>
+</html>
